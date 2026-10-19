@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data/manuals/*.pdf
+data/incidents/*.csv
+chroma_db/
+.DS_Store
