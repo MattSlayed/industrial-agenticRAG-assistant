@@ -96,6 +96,27 @@ day one.
 9. **Eval** — a small fixed question set with expected source types/answers
    to catch regressions as you iterate (LangSmith or a plain pytest harness).
 
+## Related reference
+
+[jamwithai/beginner-local-rag-system](https://github.com/jamwithai/beginner-local-rag-system)
+is a hand-rolled local RAG stack (OpenSearch hybrid search, Ollama, Streamlit)
+worth knowing about, but **not** an architecture reference for this project:
+it's a single-shot retrieve-then-generate chain with no LangChain, no
+LangGraph, and no routing/self-correction -- exactly the pattern this
+project's README argues against as the main design. Three specific ideas
+from it are worth borrowing (see TODOs in `src/ingest.py` and
+`src/graph/nodes.py`):
+
+- hybrid (lexical + vector) search instead of vector-only retrieval
+- OCR fallback for scanned PDF pages that yield no extractable text
+- a fully local/offline stack (Ollama + sentence-transformers) as an
+  optional variant -- plausible for this domain if the manuals/incident
+  data are treated as something a site wouldn't want leaving the network
+
+A Streamlit or similar UI to demo the finished assistant (à la that repo's
+chatbot page) is a reasonable stretch milestone 10, once the graph itself
+works -- don't start there.
+
 ## Stack
 
 - `langgraph` for the state machine

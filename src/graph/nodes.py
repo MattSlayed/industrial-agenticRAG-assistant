@@ -14,6 +14,14 @@ retrieve_structured(state)
 retrieve_semantic(state)
   Vector search over the manual chunks. Consider metadata filtering by
   equipment type if the question names one.
+  Don't stop at pure vector similarity -- a torque-spec-style question is
+  often answered by an exact term match (a model number, "gland packing")
+  that embeddings alone can miss. Fuse lexical + vector search: LangChain's
+  EnsembleRetriever can combine a BM25Retriever with your vector retriever
+  via reciprocal rank fusion in a few lines. (jamwithai's
+  beginner-local-rag-system hand-rolls the same idea as a single OpenSearch
+  "hybrid" query -- same concept, LangChain gets you there with far less
+  code.)
 
 grade_documents(state)
   Score whether retrieved context actually answers the question. On a low
