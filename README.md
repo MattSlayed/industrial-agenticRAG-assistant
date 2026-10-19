@@ -57,14 +57,23 @@ intentionally left for you to implement as the learning exercise.
 
 ## Data
 
-- `data/manuals/` — put a few real or representative OEM valve/pump manual
-  PDFs here (check license/sharing terms if using real vendor docs; public
-  spec sheets or your own BRIMIS user manual work fine too)
-- `data/incidents/` — export a CSV from `BRIMIS_IMS.xlsx` (Incident Log
-  sheet) as mock structured data, or synthesize one
+Synthetic starter data is included so you can begin on ingestion right away:
 
-Neither directory is populated in this scaffold — add your own data before
-running anything.
+- `data/manuals/` — three mock OEM-style manuals (not real vendor
+  documents, generated for this project): `GV-200_Gate_Valve_Manual.pdf`,
+  `CP-450_Centrifugal_Pump_Manual.pdf`, `CVA-30_Control_Valve_Actuator_Manual.pdf`.
+  Each has specs, a torque table, a maintenance schedule, and a
+  troubleshooting table — enough structure to test chunking strategies and
+  metadata-filtered retrieval against.
+- `data/incidents/incident_log.csv` — 70 synthetic incidents across the
+  same three equipment models (plus a motor and control panel), modeled on
+  BRIMIS's own category/priority/SLA scheme. Root cause and corrective
+  action fields are populated for `Resolved`/`Closed` rows only, mirroring
+  how a real incident log looks mid-lifecycle.
+
+Feel free to swap in your own real manuals or an export from
+`BRIMIS_IMS.xlsx` later — the synthetic set is just there to unblock you on
+day one.
 
 ## Roadmap / milestones
 
